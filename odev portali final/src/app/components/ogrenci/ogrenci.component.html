@@ -1,0 +1,64 @@
+<div class="container">
+<h1>Öğrenciler</h1>
+
+
+<mat-form-field appearance="outline">
+  <input matInput placeholder="Öğrenci Ara..." (keyup)="Filtrele($event)">
+</mat-form-field>
+
+
+<button mat-fab matTooltip="Öğrenci Ekle" color="accent" (click)="Ekle()" class="mat-elevation-z8">
+  <mat-icon aria-label="label">person_add</mat-icon>
+<p>&nbsp;</p>
+</button>
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z4">
+    <ng-container matColumnDef="ogrFoto">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Öğrenci Fotoğraf
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">          
+      <img [src]="apiServis.siteUrl+'/Dosyalar/'+kayit.ogrFoto" style="width: 60px;" matTooltip="Fotoğraf Güncellemek İçin Tıklayınız" (click)="FotoGuncelle(kayit)" />          
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ogrNo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Öğrenci No
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogrNo}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ogrAdSoyad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Öğrenci Adı Soyadı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogrAdSoyad}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ogrDogTarih">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Öğrenci Doğum Tarihi
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogrDogTarih}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+
+        <button mat-icon-button  color="primary" matTooltip="Öğrenci Detay" [routerLink]="['/derslistele',kayit.ogrId]">
+          <mat-icon aria-label="label">article</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" matTooltip="Öğrenci Düzenle" (click)="Duzenle(kayit)">
+          <mat-icon aria-label="label">edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" matTooltip="Öğrenci Sil" (click)="Sil(kayit)">
+          <mat-icon aria-label="label">delete</mat-icon>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+  
+
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+  </mat-paginator>
+
+</div>

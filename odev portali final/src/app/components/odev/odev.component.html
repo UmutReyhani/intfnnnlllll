@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>Ödev Liste</h1>
+  <button mat-fab matTooltip="Ödev Ekle" (click)="Ekle()">
+    <mat-icon aria-label="label">library_add</mat-icon>
+  </button>
+  <p>&nbsp;
+  </p>
+
+  <mat-form-field appearance="outline" style="width: 50%;">
+  <mat-label>Ders Seçiniz</mat-label>
+  <mat-select placeholder="Ders Seçiniz" (selectionChange)="DersSec($event.value)">
+    <mat-option [value]="ders" *ngFor="let ders of dersler">{{ders.dersAdi}}</mat-option>
+  </mat-select>
+  </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z20" matSort>
+    <ng-container matColumnDef="odevAdi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Odev Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.odevAdi}} </mat-cell>
+    </ng-container>
+ 
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+
+        <button mat-icon-button color="accent" matTooltip="Ders Düzenle" (click)="Duzenle(kayit)" >
+          <mat-icon aria-label="label">edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" matTooltip="Ders Sil" (click)="Sil(kayit)">
+          <mat-icon aria-label="label">delete</mat-icon>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+  
+
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+  </mat-paginator>
+</div>

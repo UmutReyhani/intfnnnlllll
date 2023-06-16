@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container">
+  <form [formGroup]="frm">
+  <mat-form-field appearance="outline" style="width: 50%;">
+      <mat-label>Ödev Adı</mat-label>
+      <mat-select placeholder="Ödev Seçiniz" (selectionChange)="OdevSec($event.value)" name="odevAdi" >
+      <mat-option [value]="odev" *ngFor="let odev of odevler">{{odev.odevAdi}}</mat-option>
+      </mat-select>
+  </mat-form-field>
+
+  </form>
+
+ <button mat-raised-button color="primary" (click)="dialogRef.close(odev)" [disabled]="frm.invalid">Kaydet</button>&nbsp;
+ <button mat-raised-button color="warn" (click)="dialogRef.close()">İptal</button>
+
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Ödev Listesi</h1>
+  <h3><b>Ders Kodu : </b>{{secDers?.dersKodu}}</h3>
+  <h3><b>Ders Adı : </b>{{secDers?.dersAdi}}</h3>
+
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="odevBilgi">
+    <mat-header-cell *matHeaderCellDef> Ödev Adı
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.odevAdi}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="islemler">
+    <mat-header-cell *matHeaderCellDef> İşlemler
+    </mat-header-cell>
+    <mat-cell *matCellDef="let islemler"> </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+</div>

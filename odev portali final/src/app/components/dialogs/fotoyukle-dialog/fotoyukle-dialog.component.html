@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    <span>Fotoğraf Güncelle</span>
+</mat-toolbar>
+<div class="container">
+  <div *ngIf="secOgrenci">
+    <h3><b>Öğrenci No : </b>{{secOgrenci.ogrNo}}<b>Öğrenci Adı Soyadı : </b>{{secOgrenci.ogrAdSoyad}}</h3>
+    <img [src]="apiServis.siteUrl+'/Dosyalar/'+secOgrenci.ogrFoto" style="width:200px;">
+  </div>
+  <img [src]="secilenFoto" *ngIf="secilenFoto" style="width:200px;"/>
+  <p>&nbsp;</p>
+  <input type="file" hidden="true" onclick="this.value=null" #foto (change)="FotoSec($event)">
+  <button mat-raised-button color="primary" (click)="foto.click()">Fotoğraf Seç</button>&nbsp;
+  <button mat-raised-button color="primary" (click)="fotoDialogRef.close(ogrFoto)">Kaydet</button>&nbsp;
+  <button mat-raised-button color="warn" (click)="fotoDialogRef.close()">Vazgeç</button>
+
+</div>
